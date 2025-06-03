@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trending Job</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f7fb;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #222;
+    }
+
+    h2::before {
+      content: "🔥 ";
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .skill-card {
+      background-color: #fff;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .skill-title {
+      font-size: 1.4rem;
+      color: #0070f3;
+      margin-bottom: 10px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .skill-desc {
+      color: #555;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .learn-btn {
+      align-self: center;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .learn-btn:hover {
+      background-color: #218838;
+    }
+
+    @media screen and (max-width: 480px) {
+      h2 {
+        font-size: 2rem;
+      }
+
+      .skill-title {
+        font-size: 1.2rem;
+      }
+
+      .skill-desc {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Trending Skills</h2>
+
+  <div class="skills-container">
+    <div class="skill-card">
+      <div class="skill-title">React.js</div>
+      <div class="skill-desc">Build fast and interactive UIs with React library.</div>
+      <button class="learn-btn">Learn More</button>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-title">Node.js</div>
+      <div class="skill-desc">Server-side JavaScript for scalable backend development.</div>
+      <button class="learn-btn">Learn More</button>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-title">Python</div>
+      <div class="skill-desc">Versatile programming language for AI, data, and more.</div>
+      <button class="learn-btn">Learn More</button>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-title">AWS</div>
+      <div class="skill-desc">Master cloud computing with Amazon Web Services.</div>
+      <button class="learn-btn">Learn More</button>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-title">Docker</div>
+      <div class="skill-desc">Containerize applications for consistency and portability.</div>
+      <button class="learn-btn">Learn More</button>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-title">Data Analysis</div>
+      <div class="skill-desc">Learn to interpret, clean, and visualize data efficiently.</div>
+      <button class="learn-btn">Learn More</button>
+    </div>
+  </div>
+
+</body>
+</html>

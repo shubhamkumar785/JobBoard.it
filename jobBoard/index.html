@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Job Board</title>
+        <link rel="stylesheet" href="style.css" />
+        <!-- Added Font Awesome CDN for icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            integrity="sha512-dNm+6e0nPqZcu7IYYKl0bLvYGZp5ZigEK1yYzCn+XQ+6u9bz8lQ+qC8K1yABKK+nq1szdkccSGr+bskXU78D1w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">Job Board<span>it</span></div>
+            <ul class="nav-links">
+                <li>Jobs</li>
+                <li>Highlight</li>
+                <li>Prep</li>
+                <li>Learn</li>
+                <li>Career Advice</li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html"><button class="login">Login</button></a>
+                <a href="register.html"><button
+                        class="register">Register</button></a>
+            </div>
+        </nav>
+
+        <!-- search Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Over 8,00,000 openings delivered perfectly</h1>
+                <div class="search-bar">
+                    <input type="text"
+                        placeholder="Search by Skills, Company or Job Title"
+                        name="search" />
+                    <input type="text" placeholder="Location" name="location" />
+                    <select name="experience">
+                        <option value>Experience</option>
+                        <option value="0">Fresher</option>
+                        <option value="1">1+ Years</option>
+                    </select>
+                    <button onclick="searchJobs()">Search</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Companies -->
+        <section class="companies">
+            <h2>Featured Companies</h2>
+            <div class="company-logos">
+                <img src="logo/microsoft.png" alt="Microsoft" />
+                <img src="logo/amazon.jpg" alt="Amazon">
+                <img src="logo/flipkart.png" alt="Flipkart">
+                <img src="logo/google.webp" alt="Google">
+                <img src="logo/tcs.png" alt="TCS" />
+                <img src="logo/infosys.png" alt="Infosys" />
+                <img src="logo/jpmorgan.png" alt="JP Morgab">
+                <img src="logo/Capgemini.png" alt="Capgemini" />
+                <img src="logo/Cognizant.jpg" alt="Cognizant" />
+                <img src="logo/samsung.jpg" alt="Samsung" />
+
+            </div>
+        </section>
+
+        <!-- Popular Categories -->
+        <section class="categories">
+            <h2>Popular Categories</h2>
+            <div class="category-grid">
+                <a href="details.html?job=software" class="category">👨‍💻
+                    Software Engineering</a>
+                <a href="details.html?job=webdevlopment" class="category">🌐 Web
+                    Development</a>
+                <a href="details.html?job=backend" class="category">🖧 Backend
+                    Engineer</a>
+                <a href="details.html?job=uiux" class="category">🎨 UI / UX
+                    Designer</a>
+                <a href="details.html?job=graphic" class="category">🖌️ Graphic
+                    Designer</a>
+                <a href="details.html?job=cloud" class="category">☁️ Cloud
+                    Engineer</a>
+                <!-- Optional: Add banking to jobData or remove this -->
+                <!-- <a href="details.html?job=banking" class="category">🏦 Banking</a> -->
+                <a href="details.html?job=remote" class="category">🏠 Work From
+                    Home</a>
+                <a href="details.html?job=hr" class="category">👔 HR</a>
+                <a href="details.html?job=sales" class="category">📦 Sales</a>
+                <!-- Optional: Add accounting to jobData or remove this -->
+                <!-- <a href="details.html?job=accounting" class="category">📊 Accounting</a> -->
+                <a href="details.html?job=customersupport" class="category">📞
+                    Customer Support</a>
+                <a href="details.html?job=it" class="category">💻 IT</a>
+                <a href="details.html?job=sql" class="category">🗄️ SQL</a>
+            </div>
+
+        </section>
+
+        <!-- Popular Job Categories Section -->
+        <!-- Popular Job Categories Section -->
+        <!-- Popular Job Categories Section -->
+        <section class="popular-categories">
+            <h2>Popular Job Categories</h2>
+            <div class="categories-grid">
+                <a href="categories.html?category=BPO" class="category-card">
+                    <i class="fas fa-headset"></i>
+                    <span>BPO</span>
+                </a>
+                <a href="categories.html?category=Engineering"
+                    class="category-card">
+                    <i class="fas fa-cogs"></i>
+                    <span>Engineering</span>
+                </a>
+                <a href="categories.html?category=IT" class="category-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>IT</span>
+                </a>
+                <a href="categories.html?category=SQL" class="category-card">
+                    <i class="fas fa-database"></i>
+                    <span>SQL</span>
+                </a>
+                <a href="categories.html?category=Oracle" class="category-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Oracle</span>
+                </a>
+                <a href="categories.html?category=Graphic Design"
+                    class="category-card">
+                    <i class="fas fa-pencil-ruler"></i>
+                    <span>Graphic Design</span>
+                </a>
+                <a href="categories.html?category=Digital Marketing"
+                    class="category-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Digital Marketing</span>
+                </a>
+                <a href="categories.html?category=Event Management"
+                    class="category-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Event Management</span>
+                </a>
+                <a href="categories.html?category=Data Analyst"
+                    class="category-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Data Analyst</span>
+                </a>
+                <a href="categories.html?category=DevOps" class="category-card">
+                    <i class="fas fa-tools"></i>
+                    <span>DevOps</span>
+                </a>
+                <a href="categories.html?category=Cloud Engineer"
+                    class="category-card">
+                    <i class="fas fa-cloud"></i>
+                    <span>Cloud Engineer</span>
+                </a>
+                <a href="categories.html?category=Network Administrator"
+                    class="category-card">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Network Administrator</span>
+                </a>
+                <a href="categories.html?category=Cyber Security"
+                    class="category-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Cyber Security</span>
+                </a>
+                <a href="categories.html?category=Customer Support"
+                    class="category-card">
+                    <i class="fas fa-headphones-alt"></i>
+                    <span>Customer Support</span>
+                </a>
+                <a href="categories.html?category=Legal" class="category-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Legal</span>
+                </a>
+                <a href="categories.html?category=Finance"
+                    class="category-card">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Finance</span>
+                </a>
+                <a href="categories.html?category=Banking"
+                    class="category-card">
+                    <i class="fas fa-university"></i>
+                    <span>Banking</span>
+                </a>
+                <a href="categories.html?category=HR" class="category-card">
+                    <i class="fas fa-user-tie"></i>
+                    <span>HR</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Trending Skills and Job Titles Section -->
+        <section class="trending-section">
+            <h2>Trending Skills</h2>
+            <div class="trending-tags">
+                <a href="trending-skills.html" class="tag">Accounting Jobs</a>
+                <a href="trending-skills.html" class="tag">Analytics Jobs</a>
+                <a href="trending-skills.html" class="tag">Animation Jobs</a>
+                <a href="trending-skills.html" class="tag">Architecture Jobs</a>
+                <a href="trending-skills.html" class="tag">Banking Jobs</a>
+                <a href="trending-skills.html" class="tag">BPO Jobs</a>
+                <a href="trending-skills.html" class="tag">Data Science Jobs</a>
+                <a href="trending-skills.html" class="tag">Java Jobs</a>
+                <a href="trending-skills.html" class="tag">Marketing Jobs</a>
+            </div>
+
+            <h2>Trending Job Titles</h2>
+            <div class="trending-tags">
+                <a href="trendingjob.html?job=analyst" class="tag">Business
+                    Analyst Jobs</a>
+                <a href="trendingjob.html?job=marketing-head"
+                    class="tag">Digital Marketing Head Jobs</a>
+                <a href="trendingjob.html?job=engineer" class="tag">Engineering
+                    Manager Jobs</a>
+                <a href="trendingjob.html?job=hr" class="tag">HR Head Jobs</a>
+                <a href="trendingjob.html?job=marketing" class="tag">Marketing
+                    Head Jobs</a>
+                <a href="trendingjob.html?job=manager" class="tag">Marketing
+                    Manager Jobs</a>
+            </div>
+
+        </section>
+
+        <section>
+            <div class="job-filter-box">
+                <h3>Find job vacancies by</h3>
+                <div class="tabs">
+                    <span class="tab active">Skills</span>
+                    <span class="tab">Location</span>
+                    <span class="tab">Industry</span>
+                    <span class="tab">Functions</span>
+                    <span class="tab">Roles</span>
+                    <span class="tab">Company</span>
+                </div>
+                <div class="skills-list">
+                    <span class="skill-pill">Python</span>
+                    <span class="skill-pill">Sql</span>
+                    <span class="skill-pill">Java</span>
+                    <span class="skill-pill">AWS</span>
+                    <span class="skill-pill">Javascript</span>
+                    <span class="skill-pill">Git</span>
+                    <span class="skill-pill">Excel</span>
+                    <span class="skill-pill">Azure</span>
+                    <span class="skill-pill">Docker</span>
+                    <span class="skill-pill">Sales</span>
+                    <span class="skill-pill">Kubernetes</span>
+                    <span class="skill-pill">Data Analysis</span>
+                    <span class="skill-pill">Ms Office</span>
+                    <span class="skill-pill">HTML</span>
+                    <span class="skill-pill">CSS</span>
+                    <span class="skill-pill">Project Management</span>
+                    <span class="skill-pill">Jenkins</span>
+                    <span class="skill-pill">Gcp</span>
+                    <span class="skill-pill">Linux</span>
+                    <span class="skill-pill">Lead Generation</span>
+                </div>
+                <a href="#" class="view-all">View all jobs by Skills <i
+                        class="fas fa-arrow-right"></i></a>
+            </div>
+
+        </section>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2>Job Board<span class="green">it</span></h2>
+                    <p>Your gateway to career success.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div>
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Site Map</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Follow Us</h3>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <div class="footer-bottom">
+                <p>&copy; 2025 shubham kumar. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Job Category</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://kit.fontawesome.com/your-kit-code.js"
+            crossorigin="anonymous"></script>
+        <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f6f8fc;
+    padding: 30px;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+
+  #job-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .job-listing {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .job-listing:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .job-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #111;
+  }
+
+  .company, .location, .experience {
+    margin-bottom: 6px;
+    color: #444;
+  }
+
+  .job-listing strong {
+    color: #000;
+  }
+
+  .apply-button {
+    margin-top: 12px;
+    padding: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .apply-button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+    </head>
+    <body>
+        <h1 id="category-title">Jobs</h1>
+        <div id="job-container"></div>
+
+        <script>
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('category');
+    document.getElementById("category-title").textContent = category + " Jobs";
+
+    // Sample job data (you can later fetch this from a backend or JSON file)
+const jobData = {
+  "IT": [
+    { title: "Frontend Developer", company: "Tech Corp", location: "Remote", experience: "Fresher" },
+    { title: "Backend Engineer", company: "InnovateX", location: "Bangalore", experience: "1 year" }
+  ],
+  "Finance": [
+    { title: "Financial Analyst", company: "FinTrust", location: "Mumbai", experience: "1 year" },
+    { title: "Accountant", company: "MoneyMatters", location: "Delhi", experience: "Fresher" }
+  ],
+  "HR": [
+    { title: "HR Executive", company: "PeopleFirst", location: "Chennai", experience: "1 year" },
+    { title: "Talent Acquisition", company: "TalentWorks", location: "Hyderabad", experience: "Fresher" }
+  ],
+  "BPO": [
+    { title: "Customer Support Executive", company: "CallMeNow", location: "Noida", experience: "Fresher" },
+    { title: "Voice Process Associate", company: "SpeakEasy", location: "Pune", experience: "1 year" }
+  ],
+  "Engineering": [
+    { title: "Mechanical Engineer", company: "BuildTech", location: "Ahmedabad", experience: "1 year" },
+    { title: "Civil Engineer", company: "InfraEdge", location: "Nagpur", experience: "Fresher" }
+  ],
+  "SQL": [
+    { title: "SQL Developer", company: "DataWave", location: "Kolkata", experience: "1 year" },
+    { title: "Database Analyst", company: "QueryMasters", location: "Chandigarh", experience: "Fresher" }
+  ],
+  "Oracle": [
+    { title: "Oracle DBA", company: "Oracle Solutions", location: "Gurgaon", experience: "1 year" },
+    { title: "Oracle Developer", company: "TechVerse", location: "Jaipur", experience: "Fresher" }
+  ],
+  "Graphic Design": [
+    { title: "Graphic Designer", company: "CreativeHive", location: "Mumbai", experience: "Fresher" },
+    { title: "Visual Designer", company: "DesignCraft", location: "Delhi", experience: "1 year" }
+  ],
+  "Digital Marketing": [
+    { title: "Digital Marketing Executive", company: "MarketGurus", location: "Bangalore", experience: "1 year" },
+    { title: "SEO Analyst", company: "ClickBoost", location: "Remote", experience: "Fresher" }
+  ],
+  "Event Management": [
+    { title: "Event Coordinator", company: "Eventia", location: "Hyderabad", experience: "1 year" },
+    { title: "Event Planner", company: "BigMoments", location: "Chennai", experience: "Fresher" }
+  ],
+  "Data Analyst": [
+    { title: "Data Analyst", company: "InsightCorp", location: "Pune", experience: "Fresher" },
+    { title: "Junior Data Analyst", company: "DataEdge", location: "Noida", experience: "1 year" }
+  ],
+  "DevOps": [
+    { title: "DevOps Engineer", company: "DeployMate", location: "Bangalore", experience: "1 year" },
+    { title: "Site Reliability Engineer", company: "CloudSync", location: "Remote", experience: "Fresher" }
+  ],
+  "Cloud Engineer": [
+    { title: "Cloud Engineer", company: "SkyNet Solutions", location: "Gurgaon", experience: "1 year" },
+    { title: "Cloud Associate", company: "NimbusTech", location: "Kolkata", experience: "Fresher" }
+  ],
+  "Network Administrator": [
+    { title: "Network Administrator", company: "NetSecure", location: "Delhi", experience: "1 year" },
+    { title: "Junior Network Engineer", company: "LinkZone", location: "Lucknow", experience: "Fresher" }
+  ],
+  "Cyber Security": [
+    { title: "Cyber Security Analyst", company: "SecureBytes", location: "Mumbai", experience: "Fresher" },
+    { title: "Information Security Engineer", company: "SafeNet", location: "Chennai", experience: "1 year" }
+  ],
+  "Customer Support": [
+    { title: "Customer Support Specialist", company: "HelpDeskPro", location: "Hyderabad", experience: "1 year" },
+    { title: "Support Associate", company: "QuickAssist", location: "Indore", experience: "Fresher" }
+  ],
+  "Legal": [
+    { title: "Legal Associate", company: "Lex & Co", location: "Delhi", experience: "1 year" },
+    { title: "Junior Legal Advisor", company: "LawBridge", location: "Pune", experience: "Fresher" }
+  ],
+  "Banking": [
+    { title: "Banking Executive", company: "BankPro", location: "Ahmedabad", experience: "1 year" },
+    { title: "Teller", company: "SecureBank", location: "Lucknow", experience: "Fresher" }
+  ]
+};
+
+const jobs = jobData[category] || [];
+const jobContainer = document.getElementById("job-container");
+
+if (jobs.length === 0) {
+  jobContainer.innerHTML = "<p>No job vacancies available for this category.</p>";
+} else {
+  jobContainer.innerHTML = ""; // Clear old data
+  jobs.forEach(job => {
+const jobCard = `
+  <div class="job-listing">
+    <div class="job-title">${job.title}</div>
+    <div class="company"><strong>Company:</strong> ${job.company}</div>
+    <div class="location"><strong>Location:</strong> ${job.location}</div>
+    <div class="experience"><strong>Experience:</strong> ${job.experience}</div>
+    <button class="apply-button">Apply</button>
+  </div>
+`;
+
+    jobContainer.innerHTML += jobCard;
+  });
+}
+
+  </script>
+    </body>
+</html>

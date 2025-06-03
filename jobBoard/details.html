@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Listings</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 30px 0 10px;
+      font-size: 28px;
+      color: #222;
+    }
+
+    .job-listings {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      padding: 20px;
+    }
+
+    .job-card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .job-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .job-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #111;
+    }
+
+    .company, .location, .description {
+      font-size: 14px;
+      margin: 4px 0;
+      color: #555;
+    }
+
+    .apply-btn {
+      margin-top: 15px;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .apply-btn:hover {
+      background-color: #0056cc;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .modal-content button {
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-content button:hover {
+      background-color: #218838;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      color: #888;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .job-listings {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .job-card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2 id="categoryTitle">Job Listings</h2>
+  <div class="job-listings" id="jobContainer"></div>
+
+  <!-- Application Modal -->
+  <div class="modal" id="applyModal" role="dialog" aria-modal="true" aria-labelledby="applyModalTitle">
+    <div class="modal-content">
+      <span class="close" id="closeModal" aria-label="Close modal">&times;</span>
+      <h3 id="applyModalTitle">Apply for Job</h3>
+      <form id="applyForm">
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        <input type="number" id="experience" name="experience" placeholder="Years of Experience" min="0" required />    
+        <label for="resume">Upload Resume (PDF or DOC):</label>
+        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required />
+        <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const jobData = {
+      software: [
+        { title: "Frontend Developer", company: "Google", location: "Bangalore", description: "Builds the visual elements of a website or application that users interact with.",experience: "4+ years" },
+        { title: "Backend Developer", company: "Microsoft", location: "Hyderabad", description: "Handles server-side logic, databases, and APIs.",experience: "3+ years" },
+        { title: "Full Stack Engineer", company: "Amazon", location: "Chennai", description: "Works on both frontend and backend development tasks." }
+      ],
+      marketing: [
+        { title: "Marketing Specialist", company: "Zomato", location: "Mumbai", description: "Plans and runs marketing campaigns to increase brand visibility.", experience: "2+ years" },
+        { title: "SEO Expert", company: "Flipkart", location: "Delhi", description: "Optimizes websites to rank better on search engines." },
+        { title: "Digital Marketer", company: "Swiggy", location: "Remote", description: "Manages digital advertising and marketing strategies.", experience: "1+ years" }
+      ],
+      uiux: [
+        { title: "UI Designer", company: "Adobe", location: "Remote", description: "Designs user interfaces for web and mobile apps.", experience: "3+ years" },
+        { title: "UX Researcher", company: "Figma", location: "Bangalore", description: "Studies user behavior to inform design decisions.",experience: "4+ years" },
+        { title: "Product Designer", company: "Canva", location: "Hyderabad", description: "Creates user-centered designs for products.",experience: "2+ years" }
+      ],
+      hr: [
+        { title: "HR Executive", company: "Deloitte", location: "Mumbai", description: "Handles HR operations including payroll and benefits.", experience: "3+ years" },
+        { title: "Talent Acquisition", company: "Accenture", location: "Chennai", description: "Recruits and hires new employees." , experience: "2+ years"},
+        { title: "HR Coordinator", company: "Wipro", location: "Delhi", description: "Coordinates HR tasks and maintains employee records.", experience: "1+ years" }
+      ],
+      sales: [
+        { title: "Sales Manager", company: "PepsiCo", location: "Delhi", description: "Leads sales teams and strategies.", experience: "fresher" },
+        { title: "Account Executive", company: "Byju's", location: "Bangalore", description: "Manages client accounts and sales growth.", experience: "4+ years" },
+        { title: "Field Sales Agent", company: "Reliance", location: "Kolkata", description: "Sells products directly to customers in the field.", experience: "3+ years" }
+      ],
+      it: [
+        { title: "IT Support", company: "IBM", location: "Hyderabad", description: "Resolves technical issues and supports end users.", experience: "2+ years" },
+        { title: "System Administrator", company: "TCS", location: "Mumbai", description: "Maintains and configures computer systems.", experience: "3+ years" },
+        { title: "Network Engineer", company: "Infosys", location: "Pune", description: "Manages and maintains network infrastructure.", experience: "4+ years" }
+      ],
+      sql: [
+        { title: "SQL Developer", company: "Oracle", location: "Chennai", description: "Develops SQL queries and procedures.", experience: "4+ years" },
+        { title: "Database Admin", company: "SAP", location: "Bangalore", description: "Ensures database integrity, security, and availability." },
+        { title: "Data Analyst", company: "Zoho", location: "Coimbatore", description: "Analyzes data for business insights." }
+      ],
+      customersupport: [
+        { title: "Customer Support Agent", company: "PhonePe", location: "Remote", description: "Assists customers with inquiries and support." },
+        { title: "Technical Support", company: "Paytm", location: "Noida", description: "Provides tech support and troubleshooting." },
+        { title: "Client Service Rep", company: "Amazon", location: "Chennai", description: "Handles client queries and ensures satisfaction." }
+      ],
+      webdevlopment: [
+        { title: "Frontend Developer", company: "Google", location: "Bangalore", description: "Creates responsive UI using HTML, CSS, and JavaScript." },
+        { title: "Web Designer", company: "Zoho", location: "Chennai", description: "Designs and maintains website layout and style." },
+        { title: "React Developer", company: "Freshworks", location: "Hyderabad", description: "Builds dynamic UIs using React.js and component libraries." }
+      ],
+      backend: [
+        { title: "Backend Engineer", company: "Microsoft", location: "Hyderabad", description: "Handles server-side logic, APIs, and database integration." },
+        { title: "Node.js Developer", company: "Swiggy", location: "Bangalore", description: "Develops scalable backend services using Node.js." },
+        { title: "API Developer", company: "PayU", location: "Pune", description: "Builds and maintains RESTful APIs for web and mobile apps." }
+      ],
+      graphic: [
+        { title: "Graphic Designer", company: "Canva", location: "Remote", description: "Creates visuals for digital and print media using design tools." },
+        { title: "Visual Designer", company: "Adobe", location: "Mumbai", description: "Designs layouts, typography, and branding elements." },
+        { title: "Creative Illustrator", company: "Unacademy", location: "Remote", description: "Develops engaging illustrations and artwork." }
+      ],
+      cloud: [
+        { title: "Cloud Engineer", company: "AWS", location: "Bangalore", description: "Deploys and manages cloud infrastructure and services." },
+        { title: "DevOps Engineer", company: "Infosys", location: "Chennai", description: "Implements CI/CD pipelines and cloud automation." },
+        { title: "Azure Administrator", company: "TCS", location: "Pune", description: "Monitors and maintains Azure cloud environments." }
+      ],
+      remote: [
+        { title: "Remote Software Developer", company: "GitHub", location: "Remote", description: "Develops software remotely with modern tools and collaboration." },
+        { title: "Remote Data Analyst", company: "Notion", location: "Remote", description: "Analyzes data to generate insights from remote locations." },
+        { title: "Virtual Assistant", company: "Upwork", location: "Remote", description: "Performs administrative tasks for clients online." }
+      ]
+    };
+
+    // Get the job category from URL parameter
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("job");
+    const jobContainer = document.getElementById("jobContainer");
+    const categoryTitle = document.getElementById("categoryTitle");
+
+    if (category && jobData[category]) {
+      categoryTitle.textContent = `Jobs in ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+
+      jobData[category].forEach(job => {
+        const card = document.createElement("div");
+        card.className = "job-card";
+        card.innerHTML = `
+          <div class="job-title">${job.title}</div>
+          <div class="company"><strong>Company:</strong> ${job.company}</div>
+          <div class="location"><strong>Location:</strong> ${job.location}</div>
+          <div class="experience"><strong>Experience:</strong> ${job.experience}</div>
+          <div class="description"><strong>Description:</strong> ${job.description || "No description available."}</div>
+          <button class="apply-btn">Apply</button>
+        `;
+        // Open modal on click
+        card.querySelector(".apply-btn").addEventListener("click", () => {
+          document.getElementById("applyModal").style.display = "flex";
+        });
+        jobContainer.appendChild(card);
+      });
+    } else {
+      categoryTitle.textContent = "Job Listings";
+      jobContainer.innerHTML = "<p>No job data found for this category.</p>";
+    }
+
+    // Modal close button
+    document.getElementById("closeModal").onclick = () => {
+      document.getElementById("applyModal").style.display = "none";
+    };
+
+    // Close modal when clicking outside modal content
+    window.onclick = (e) => {
+      if (e.target === document.getElementById("applyModal")) {
+        document.getElementById("applyModal").style.display = "none";
+      }
+    };
+
+    // Form submission handler
+    document.getElementById("applyForm").onsubmit = (e) => {
+      e.preventDefault();
+      alert("Thank you for applying!");
+      document.getElementById("applyModal").style.display = "none";
+      document.getElementById("applyForm").reset();
+    };
+  </script>
+</body>
+</html>
